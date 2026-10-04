@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexDash - Pure CSS Dynamic Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================================================
+       1. HIDDEN CONTROLS (CSS STATE MANAGEMENT)
+       =================================================== -->
+  <!-- Theme Toggle -->
+  <input type="checkbox" id="theme-toggle" hidden>
+  
+  <!-- Sidebar Toggle -->
+  <input type="checkbox" id="sidebar-toggle" hidden>
+  
+  <!-- Navigation Tabs (Radio Buttons) -->
+  <input type="radio" name="dashboard-tabs" id="tab-overview" checked hidden>
+  <input type="radio" name="dashboard-tabs" id="tab-analytics" hidden>
+  <input type="radio" name="dashboard-tabs" id="tab-users" hidden>
+  <input type="radio" name="dashboard-tabs" id="tab-settings" hidden>
+
+  <!-- Filter Controls (Radio Buttons) -->
+  <input type="radio" name="card-filter" id="filter-all" checked hidden>
+  <input type="radio" name="card-filter" id="filter-active" hidden>
+  <input type="radio" name="card-filter" id="filter-pending" hidden>
+
+  <!-- Modal Pop-up Toggle -->
+  <input type="checkbox" id="modal-toggle" hidden>
+
+
+  <!-- ===================================================
+       2. APP LAYOUT
+       =================================================== -->
+  <div class="dashboard-container">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo-text">ApexDash</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <label for="tab-overview" class="nav-item nav-overview">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Overview</span>
+        </label>
+        
+        <label for="tab-analytics" class="nav-item nav-analytics">
+          <span class="nav-icon">📈</span>
+          <span class="nav-text">Analytics</span>
+        </label>
+        
+        <label for="tab-users" class="nav-item nav-users">
+          <span class="nav-icon">👥</span>
+          <span class="nav-text">Projects & Users</span>
+        </label>
+        
+        <label for="tab-settings" class="nav-item nav-settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-text">Settings</span>
+        </label>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="main-wrapper">
+      
+      <!-- TOP HEADER -->
+      <header class="top-header">
+        <div class="header-left">
+          <label for="sidebar-toggle" class="sidebar-btn" title="Toggle Sidebar">☰</label>
+          <h1 class="page-title title-overview">Dashboard Overview</h1>
+          <h1 class="page-title title-analytics">Performance Analytics</h1>
+          <h1 class="page-title title-users">Projects Management</h1>
+          <h1 class="page-title title-settings">Account Settings</h1>
+        </div>
+
+        <label for="theme-toggle" class="theme-btn">
+          <span class="icon-sun">☀️ Light</span>
+          <span class="icon-moon">🌙 Dark</span>
+        </label>
+      </header>
+
+      <!-- DYNAMIC TAB PAGES CONTENT -->
+      <main class="main-content">
+
+        <!-- ================= TAB 1: OVERVIEW ================= -->
+        <section class="tab-content page-overview">
+          <!-- Stat Cards Grid -->
+          <div class="stats-grid">
+            <div class="card stat-card">
+              <span class="stat-title">Total Revenue</span>
+              <h2 class="stat-value">$45,231.00</h2>
+              <span class="badge success">+12.5% this month</span>
+            </div>
+            <div class="card stat-card">
+              <span class="stat-title">Active Subscriptions</span>
+              <h2 class="stat-value">+2,350</h2>
+              <span class="badge success">+18.0% this month</span>
+            </div>
+            <div class="card stat-card">
+              <span class="stat-title">Bounce Rate</span>
+              <h2 class="stat-value">24.5%</h2>
+              <span class="badge danger">-3.2% this month</span>
+            </div>
+            <div class="card stat-card">
+              <span class="stat-title">Active Projects</span>
+              <h2 class="stat-value">12 Active</h2>
+              <label for="modal-toggle" class="btn-link">View Details →</label>
+            </div>
+          </div>
+
+          <!-- Pure CSS Charts Section -->
+          <div class="charts-grid">
+            <!-- Bar Chart -->
+            <div class="card chart-card">
+              <h3>Monthly Sales Revenue (Bar Chart)</h3>
+              <div class="bar-chart">
+                <div class="bar-col" style="--height: 60%;" data-label="Jan"></div>
+                <div class="bar-col" style="--height: 85%;" data-label="Feb"></div>
+                <div class="bar-col" style="--height: 45%;" data-label="Mar"></div>
+                <div class="bar-col" style="--height: 95%;" data-label="Apr"></div>
+                <div class="bar-col" style="--height: 70%;" data-label="May"></div>
+                <div class="bar-col" style="--height: 100%;" data-label="Jun"></div>
+              </div>
+            </div>
+
+            <!-- Donut Chart -->
+            <div class="card chart-card">
+              <h3>Traffic Distribution (Donut Chart)</h3>
+              <div class="donut-chart-container">
+                <div class="donut-chart"></div>
+                <div class="chart-legend">
+                  <p><span class="dot primary"></span> Organic: 60%</p>
+                  <p><span class="dot success"></span> Referral: 25%</p>
+                  <p><span class="dot warning"></span> Social: 15%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 2: ANALYTICS ================= -->
+        <section class="tab-content page-analytics">
+          <div class="card">
+            <h3>Advanced Metrics & Traffic</h3>
+            <p>Here you can analyze live visitor behaviors, conversion funnels, and real-time tracking.</p>
+          </div>
+        </section>
+
+        <!-- ================= TAB 3: PROJECTS & FILTERING ================= -->
+        <section class="tab-content page-users">
+          <!-- Filter Buttons -->
+          <div class="filter-bar">
+            <span class="filter-label">Filter Status:</span>
+            <label for="filter-all" class="filter-btn btn-all">All</label>
+            <label for="filter-active" class="filter-btn btn-active">Active</label>
+            <label for="filter-pending" class="filter-btn btn-pending">Pending</label>
+          </div>
+
+          <!-- Filterable Cards Grid -->
+          <div class="projects-grid">
+            <div class="card project-card status-active">
+              <span class="status-tag active">Active</span>
+              <h4>E-Commerce Revamp</h4>
+              <p>Client: Acme Corp</p>
+            </div>
+            <div class="card project-card status-pending">
+              <span class="status-tag pending">Pending</span>
+              <h4>Mobile App Design</h4>
+              <p>Client: Startup Inc</p>
+            </div>
+            <div class="card project-card status-active">
+              <span class="status-tag active">Active</span>
+              <h4>SaaS Dashboard UI</h4>
+              <p>Client: Apex Studio</p>
+            </div>
+            <div class="card project-card status-pending">
+              <span class="status-tag pending">Pending</span>
+              <h4>AI Chatbot System</h4>
+              <p>Client: TechCorp</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 4: SETTINGS ================= -->
+        <section class="tab-content page-settings">
+          <div class="card settings-card">
+            <h3>System Settings</h3>
+            <div class="setting-item">
+              <span>Email Notifications</span>
+              <input type="checkbox" checked>
+            </div>
+            <div class="setting-item">
+              <span>Public Profile</span>
+              <input type="checkbox">
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================
+       3. PURE CSS MODAL POP-UP
+       =================================================== -->
+  <div class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Project Details Modal</h3>
+        <label for="modal-toggle" class="close-btn">✕</label>
+      </div>
+      <div class="modal-body">
+        <p>This modal pop-up is completely built with <strong>pure CSS</strong> using the Checkbox hack and CSS transitions!</p>
+        <p>No JavaScript event listeners were used to toggle or render this window.</p>
+      </div>
+      <div class="modal-footer">
+        <label for="modal-toggle" class="btn-close">Close Window</label>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
